@@ -67,11 +67,14 @@ The figure illustrates the overall pipeline of the proposed system, including th
   <em>Figure 2: An example of CoT dataset for reasoning, including system prompt, user prompt, and supervised output.</em>
 </p>
 
-The dataset will be released on Hugging Face soon.
+The dataset will be released on HuggingFace soon.
 
 ---
 
 #### Stage 1: Initial CoT Generation
+
+- **`CoT-Gen.py`**: Script for generating reasoning-based samples given reaction SMILES.
+- **`User_Prompt.txt`**: Contains the prompt template used to query LLMs for CoT generation and reasoning-based prediction.
 
 - Source:
   - USPTO-MIT dataset  
@@ -112,4 +115,13 @@ The dataset will be released on Hugging Face soon.
 
 ## 🏋️ Training
 
+### 1. Reaction Type Classifier
+- **`Classifier.py`**: Training script for the reaction type classifier. It takes SMILES strings as input, predicts the reaction type, and generates molecular embeddings used for similarity retrieval.
+
+### 2. RAG-based LLM Training
+- **`RAG-Qwen-32B.sh`**: Shell script for training the **RAG-based LLM** (based on Qwen-32B) using **Supervised Fine-Tuning (SFT)**. This model injects retrieved similar reaction cases as knowledge into the prompt.
+
+### 3. Reasoning-based LLM Training
+- **`SFT-DeepSeek-32B-1.sh`**, **`SFT-DeepSeek-32B-2.sh`**: Scripts for multi-node **Supervised Fine-Tuning** of the **Reasoning-based LLM**.
+- **`GRPO-DeepSeek-32B-1.sh`**, **`GRPO-DeepSeek-32B-2.sh`**: Scripts for multi-node **Group Relative Policy Optimization (GRPO)** of the **Reasoning-based LLM**.
 
