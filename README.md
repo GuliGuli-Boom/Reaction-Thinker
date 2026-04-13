@@ -9,23 +9,19 @@
 
 ## 📌 Highlights
 
-- 🧠 **Hybrid LLM System**: Combines Retrieval-Augmented Generation (RAG) and reasoning-based models  
+- 🧠 **Hybrid LLM System**: Combines Retrieval-Augmented Generation (RAG) and Chain-of-Thought (CoT) reasoning  
 - 🔍 **Knowledge Injection**: Similar reaction retrieval improves factual grounding  
-- 🔗 **Chain-of-Thought Reasoning**: Explicit reaction mechanism modeling  
-- ⚡ **RL Optimization (GRPO)**: Enhances reasoning accuracy  
-- 🏆 **SOTA Performance** on Open Reaction Dataset (ORD)
+- 🔗 **Step-by-Step Reasoning**: Explicit reaction mechanism inference  
+- 🧩 **RL Optimization**: Further enhances reasoning performance with GRPO training
+- 🏆 **SOTA Performance**: Exact Match and Molecular Fingerprint Similarity on Open Reaction Dataset (ORD)
 
 ---
 
 ## 📖 Abstract
 
-We propose **Reaction-Thinker**, a hybrid framework that integrates:
+In organic reaction prediction, many recent approaches ranging from traditional task-specific models to LLMs, have demonstrated notable success. However, these methods are inherently data-driven, exhibit constrained interpretability, and have hit fundamental performance bottlenecks. To overcome these limitations, we present Reaction-Thinker, a hybrid, knowledge-and-data-driven system that is enhanced by Retrieval-Augmented Generation (RAG) and powered by advanced reasoning, improving both the interpretability of prediction process and the explainability of results. We develop a similar-case retrieval database and train a RAG-based LLM through supervised fine-tuning (SFT) to apply both reaction types and similar reaction cases as knowledge. We also construct a reaction reasoning chain-of-thought (CoT) dataset and train a reasoning-based LLM through SFT, then further optimize it using Group Relative Policy Optimization (GRPO). Experimental results show that our method outperforms all compared LLMs and task-specific models, achieving the highest accuracy (Exact Match) and fingerprint similarity (FTS). Ablation study indicates improvements in relative accuracy of 7.5% and 13.9% for RAG and GRPO, respectively. Further analysis of mispredictions reveals limitations in conventional evaluation metrics, which motivates our proposed benchmarking refinement.
 
-- Data-driven learning (SFT)
-- Knowledge-driven retrieval (RAG)
-- Reasoning optimization (RL with GRPO)
 
-to improve both **accuracy** and **interpretability** in organic reaction prediction.
 
 ---
 
@@ -35,26 +31,69 @@ to improve both **accuracy** and **interpretability** in organic reaction predic
   <img src="./assets/Method.png" width="75%">
 </p>
 
+<p align="center">
+  <em>Figure 1: Overview of the Reaction-Thinker framework. The system architecture, training process, and inference pipeline.</em>
+</p>
+
+The figure illustrates the overall pipeline of the proposed system, including the reaction type classifier, similar-case retrieval module, RAG-based predictor, and reasoning-based predictor. The system dynamically routes inputs based on the availability of similar reaction cases.
+
+---
+
 ### 🔧 Components
 
 1. **Reaction Type Classifier**
    - Input: SMILES
-   - Output: Reaction type + Embedding
+   - Output: Reaction type + Molecular embedding
 
 2. **Retrieval Module**
-   - L2 distance over learned embeddings
-   - Builds type-specific retrieval database
+   - L2 distance over molecular embeddings
+   - Builds reaction-type-specific retrieval database
 
 3. **RAG-based Predictor**
-   - Injects retrieved reaction cases into prompt
+   - Injects retrieved reaction cases into user prompt
 
 4. **Reasoning-based Predictor**
    - CoT-based deduction when no similar cases exist
 
 ---
 
-## 🏋️ Training
+## 📊 Chain-of-Thought Data Construction
 
+<p align="center">
+  <img src="./assets/Data.png" width="75%">
+</p>
+
+<p align="center">
+  <em>Figure 2: An example of CoT dataset for reasoning, including system prompt, user prompt, and supervised output.</em>
+</p>
+
+The dataset will be released on Hugging Face soon.
+
+---
+
+#### Stage 1: Initial CoT Generation
+
+- Source:
+  - USPTO-MIT dataset  
+- Method:
+  - Prompt Qwen2.5-72B-Instruct to generate reasoning-based reconstructions of reaction mechanism
+- Post-processing:
+  - Format normalization + Keyword-based filtering
+- Result:
+  - ~119K CoT samples  
+
+#### Stage 2: Distillation & Validation
+
+- Source:
+  - ORD dataset
+- Method:
+  - Fine-tune DeepSeek-R1-Distill-Qwen-7B on Stage 1 data
+  - Retain samples during GRPO training via reward-based selection
+- Result:
+  - ~575K high-quality CoT samples  
+  - ~55K unique reactions  
+
+---
 
 ## ⚙️ Environment Dependencies
 
@@ -70,3 +109,7 @@ to improve both **accuracy** and **interpretability** in organic reaction predic
 | rdkit | 2025.3.2 |
 
 ---
+
+## 🏋️ Training
+
+
