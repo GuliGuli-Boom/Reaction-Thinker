@@ -32,7 +32,7 @@ to improve both **accuracy** and **interpretability** in organic reaction predic
 ## 🏗️ System Architecture
 
 <p align="center">
-  <img src="./assets/Method.png" width="85%">
+  <img src="./assets/Method.png" width="75%">
 </p>
 
 ### 🔧 Components
