@@ -2,10 +2,6 @@
 # Towards Knowledge‑and‑Data‑Driven Organic Reaction Prediction: RAG‑Enhanced and Reasoning‑Powered Hybrid System with LLMs
 
 <p align="center">
-  <img src="./assets/architecture.png" width="85%">
-</p>
-
-<p align="center">
   🔬 ICLR 2026 | 🧪 LLM for Chemistry | ⚡ RAG + Reasoning
 </p>
 
@@ -36,31 +32,41 @@ to improve both **accuracy** and **interpretability** in organic reaction predic
 ## 🏗️ System Architecture
 
 <p align="center">
-  <img src="./assets/architecture.png" width="90%">
+  <img src="./assets/Method.png" width="85%">
 </p>
 
 ### 🔧 Components
 
 1. **Reaction Type Classifier**
    - Input: SMILES
-   - Output: reaction type + embedding
+   - Output: Reaction type + Embedding
 
 2. **Retrieval Module**
    - L2 distance over learned embeddings
    - Builds type-specific retrieval database
 
 3. **RAG-based Predictor**
-   - Injects retrieved cases into prompt
+   - Injects retrieved reaction cases into prompt
 
 4. **Reasoning-based Predictor**
    - CoT-based deduction when no similar cases exist
 
 ---
 
-## ⚙️ Installation
+## 🏋️ Training
 
-### 1. Clone Repository
 
-```bash
-git clone https://github.com/yourname/reaction-thinker.git
-cd reaction-thinker
+## ⚙️ Environment Dependencies
+
+### Core Environment
+
+| Package | Version |
+|--------|--------|
+| python | 3.10.16 |
+| ms-swift | 3.12.2 |
+| torch | 2.8.0 |
+| transformers | 4.57.6 |
+| vllm | 0.11.0 |
+| rdkit | 2025.3.2 |
+
+---
