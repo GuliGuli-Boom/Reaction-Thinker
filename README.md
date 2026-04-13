@@ -122,6 +122,6 @@ The dataset will be released on HuggingFace soon.
 - **`RAG-Qwen-32B.sh`**: Shell script for training the **RAG-based LLM** (based on Qwen-32B) using **Supervised Fine-Tuning (SFT)**. This model injects retrieved similar reaction cases as knowledge into the prompt.
 
 ### 3. Reasoning-based LLM Training
-- **`SFT-DeepSeek-32B-1.sh`**, **`SFT-DeepSeek-32B-2.sh`**: Scripts for multi-node **Supervised Fine-Tuning** of the **Reasoning-based LLM**.
+- **`SFT-DeepSeek-32B-1.sh`**, **`SFT-DeepSeek-32B-2.sh`**: Scripts for multi-node **Supervised Fine-Tuning** of the **Reasoning-based LLM** (based on DeepSeek-R1-Distill-Qwen-32B).
 - **`GRPO-DeepSeek-32B-1.sh`**, **`GRPO-DeepSeek-32B-2.sh`**: Scripts for multi-node **Group Relative Policy Optimization (GRPO)** of the **Reasoning-based LLM**.
 
