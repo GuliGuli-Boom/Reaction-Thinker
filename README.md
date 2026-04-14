@@ -119,7 +119,7 @@ The dataset will be released on HuggingFace soon.
 - **`Classifier.py`**: Training script for the reaction type classifier. It takes SMILES strings as input, predicts the reaction type, and generates molecular embeddings used for similarity retrieval.
 
 ### 2. RAG-based LLM Training
-- **`RAG-Qwen-32B.sh`**: Shell script for training the **RAG-based LLM** (based on Qwen-32B) using **Supervised Fine-Tuning (SFT)**. This model injects retrieved similar reaction cases as knowledge into the prompt.
+- **`RAG-Qwen-32B.sh`**: Shell script for training the **RAG-based LLM** (based on Qwen3-32B) using **Supervised Fine-Tuning (SFT)**. This model injects retrieved similar reaction cases as knowledge into the prompt.
 
 ### 3. Reasoning-based LLM Training
 - **`SFT-DeepSeek-32B-1.sh`**, **`SFT-DeepSeek-32B-2.sh`**: Scripts for multi-node **Supervised Fine-Tuning** of the **Reasoning-based LLM** (based on DeepSeek-R1-Distill-Qwen-32B).
