@@ -67,7 +67,7 @@ The figure illustrates the overall pipeline of the proposed system, including th
   <em>Figure 2: An example of CoT dataset for reasoning, including system prompt, user prompt, and supervised output.</em>
 </p>
 
-The dataset will be released on HuggingFace soon.
+The dataset has been released on HuggingFace: https://huggingface.co/SHIKI-X/Reaction-Thinker/tree/main
 
 ---
 
